@@ -1,0 +1,33 @@
+<% content_for :page_title, "Home" %>
+
+<nav class="filters">
+  <%= active_link_to "all restaurants", root_path, active: { price: nil, cuisine: nil, location: nil } %>
+
+  <%= active_link_to "£", root_path(price: 1, cuisine: @cuisine, location: @location), active: { price: 1 } %>
+  <%= active_link_to "££", root_path(price: 2, cuisine: @cuisine, location: @location), active: { price: 2 }  %>
+  <%= active_link_to "£££", root_path(price: 3, cuisine: @cuisine, location: @location), active: { price: 3 }  %>
+
+  <%= active_link_to "english", root_path(cuisine: "English", price: @price, location: @location), active: { cuisine: "English" } %>
+  <%= active_link_to "indian", root_path(cuisine: "Indian", price: @price, location: @location), active: { cuisine: "Indian" } %>
+  <%= active_link_to "thai", root_path(cuisine: "Thai", price: @price, location: @location), active: { cuisine: "Thai" } %>
+  <%= active_link_to "mexican", root_path(cuisine: "Mexican", price: @price, location: @location), active: { cuisine: "Mexican" } %>
+  <%= active_link_to "italian", root_path(cuisine: "Italian", price: @price, location: @location), active: { cuisine: "Italian" } %>
+
+</nav>
+
+
+<% @reviews.each do |review| %>
+  <div class="review">
+    <%= link_to review_path(review) do %>
+
+      <h2><%= review.title %></h2>
+      <p>
+        <%= review.restaurant %> |
+        <%= review.cuisine %>
+      </p>
+      <%= image_tag(review.photo_url(:thumb).to_s) %>
+      <p><%= pluralize review.comments.count, "comment" %></p>
+
+    <% end %>
+  </div>
+<% end %>

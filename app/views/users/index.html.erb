@@ -1,0 +1,7 @@
+<h1>Users Online</h1>
+
+<% @users.each do |user| %>
+  <p>
+    <%= user.username %> // <%= user.email %>
+  </p>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Edit Account</h1>
+
+
+<%= simple_form_for @current_user, url: account_path do |f| %>
+  <%= f.input :username %>
+  <%= f.input :email %>
+
+  <%= f.button :submit, "confirm" %>
+
+<% end %>
